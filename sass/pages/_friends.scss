@@ -1,0 +1,119 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+@use "../helpers/components" as *;
+@use "layout/grid" as *;
+.friends {
+  section {
+    .container {
+      .content {
+        @extend %courses-grid;
+        .card {
+          @extend %cards-main-styles;
+          position: relative;
+          transition: box-shadow v.$main-transition;
+          &:hover {
+            box-shadow: 5px 5px 10px hsl(0, 0%, 0%,.3);
+          }
+          .main-info {
+            padding-block: v.$card-padding;
+            text-align: center;
+            border-bottom: 2px solid #ecf2ff;
+            img {
+              width: 100px;
+              border-radius: 50%;
+              margin-inline: auto;
+            }
+            h2 {
+              margin-top: 1rem;
+              margin-bottom: 0.5rem;
+              font-size: 1.2rem;
+            }
+            p {
+              color: c.$clr-main-pargraph;
+            }
+          }
+          .section-2 {
+            padding-block: v.$card-padding;
+            border-bottom: 2px solid #ecf2ff;
+            @include m.flex(center, stretch, column) {
+              gap: v.$card-padding;
+            }
+            p {
+              i {
+                margin-right: 1rem;
+              }
+            }
+          }
+          .section-3 {
+            padding-top: v.$card-padding;
+            .date {
+              color: c.$clr-main-pargraph;
+              text-align: center;
+              margin-bottom: v.$card-padding;
+            }
+            .buttons {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 1rem;
+              .button {
+                width: 100%;
+                text-align: center;
+                &:nth-child(2) {
+                  color: c.$clr-primary-red;
+                }
+              }
+            }
+          }
+          .contact {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            @include m.flex(center, center) {
+              gap: 0.5rem;
+            }
+            a {
+              @include m.flex(center, center);
+              width: 40px;
+              aspect-ratio: 1;
+              background-color: c.$clr-main-gray;
+              border-radius: 50%;
+              color: c.$clr-main-pargraph;
+              box-shadow: 2px 2px 5px hsl(0, 0%, 0%, 0.2);
+              transition: background v.$main-transition,
+                color v.$main-transition;
+              &:first-child {
+                i {
+                  transform: rotate(-35deg);
+                }
+              }
+              &:first-child:hover {
+                color: white;
+                background-color: c.$clr-primary-green;
+              }
+              &:last-child:hover {
+                color: white;
+                background-color: c.$clr-primary-yellow;
+              }
+            }
+          }
+          &.vip {
+            .section-2 {
+              position: relative;
+              &::after {
+                content: "VIP";
+                position: absolute;
+                font-size: 3rem;
+                font-weight: bold;
+                color: hsl(51, 100%, 50%,.2);
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

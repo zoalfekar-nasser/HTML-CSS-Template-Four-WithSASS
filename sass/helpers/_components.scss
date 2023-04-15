@@ -1,0 +1,161 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+
+// Buttons
+.button {
+  cursor: pointer;
+  color: c.$clr-primary-blue;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  background-color: white;
+  font-weight: 500;
+  position: relative;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transition: background v.$main-transition, transform v.$main-transition,
+    box-shadow v.$main-transition 0.3s;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 0;
+    background-color: currentColor;
+    transition: height v.$main-transition;
+  }
+  &::before {
+    left: 0;
+    top: 0;
+  }
+  &::after {
+    right: 0;
+    bottom: 0;
+  }
+  &:hover {
+    box-shadow: 5px 5px 0px;
+    &::after,
+    &::before {
+      height: 100%;
+    }
+  }
+  &:active {
+    transform: translateY(5px);
+  }
+  @media (v.$max-small) {
+    font-size: 14px;
+    padding: .5rem .75rem ;
+  }
+}
+// Card heading
+h2.card-heading {
+  margin-bottom: 1rem;
+  color: c.$clr-main-heading;
+  @media (v.$max-small) {
+    font-size: 20px;
+  }
+}
+p.card-heading {
+  margin-bottom: 1rem;
+  color: c.$clr-main-pargraph;
+}
+
+// Cards Main Styles
+%cards-main-styles {
+  padding: v.$main-padding;
+  background-color: c.$clr-main-card;
+  box-shadow: v.$box-shadow;
+  border-radius: v.$card-radius;
+}
+// Info Box
+.info-box {
+  background-color: c.$clr-main-gray;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(c.$clr-main-heading, 0.1);
+}
+// Custom Checbox
+.control {
+  width: fit-content;
+  input[type="checkbox"] {
+    &:checked {
+      + label {
+        background-color: c.$clr-primary-blue;
+        box-shadow: 0px 5px 5px hsl(0, 0%, 0%, 0.1);
+        &::before {
+          content: "\f00c";
+          color: c.$clr-primary-blue;
+          left: calc(100% - 26px);
+          background-color: white;
+          animation: check-animation v.$main-transition alternate;
+        }
+      }
+    }
+  }
+  label {
+    display: block;
+    width: 60px;
+    border-radius: 20px;
+    aspect-ratio: 2 / 1;
+    background-color: #f5f5f5;
+    position: relative;
+    transition: background v.$main-transition;
+    cursor: pointer;
+    @include m.flex(flex-start, center);
+    &::before {
+      content: "\f00d";
+      font-weight: 800;
+      font-family: "Font Awesome 6 Free";
+      color: hsla(0, 0%, 0%, 0.5);
+      @include m.flex(center, center);
+      height: 22px;
+      aspect-ratio: 1;
+      position: absolute;
+      left: 4px;
+      background-color: #e9e8e8;
+      border-radius: 50%;
+      transition: left v.$main-transition, background v.$main-transition,
+        color v.$main-transition;
+      // animation: check-animation v.$main-transition;
+    }
+  }
+}
+
+// Animations
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes check-animation {
+  0% {
+    height: 22px;
+    font-size: 1rem;
+  }
+  50% {
+    height: 11px;
+    font-size: 0.5rem;
+  }
+  100% {
+    font-size: 1rem;
+    height: 22px;
+  }
+}
+@keyframes up {
+  0% {
+    transform: translateY(5px);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}

@@ -1,0 +1,148 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+@use "../helpers/components" as *;
+@use "layout/grid" as *;
+.projects {
+  section {
+    .container {
+      .content {
+        @extend %dash-grid;
+        .card {
+          &:hover {
+            box-shadow: 5px 5px 5px rgba(c.$clr-main-heading, 0.2);
+            transform: translateY(-5px);
+          }
+          position: relative;
+          transition: box-shadow v.$main-transition, transform v.$main-transition; 
+          @extend %cards-main-styles;
+          .date {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: rgba(c.$clr-primary-red, 0.7);
+          }
+          h2.card-heading {
+            font-size: 1rem;
+            font-weight: 600;
+          }
+          section {
+            margin-top: 1rem;
+            .row {
+              padding: v.$card-padding 0;
+              &:not(:last-child) {
+                border-bottom: 1px solid #f2f2f2;
+              }
+              .imgs {
+                @include m.flex();
+                img {
+                  cursor: pointer;
+                  position: relative;
+                  width: 50px;
+                  border-radius: 50%;
+                  border: 2px solid white;
+                  &:not(:first-child) {
+                    margin-left: -20px;
+                  }
+                  &:hover {
+                    z-index: 10;
+                  }
+                }
+              }
+              &.skills {
+                @include m.flex(flex-end, center) {
+                  gap: 0.5rem;
+                }
+                @media (v.$max-small) {
+                  flex-direction: column;
+                  justify-content: center;
+                }
+              }
+              &.prog {
+                @include m.flex(space-between, center);
+                @media (v.$max-small) {
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 0.75rem;
+                }
+                .progress-container {
+                  width: 300px;
+                  height: 15px;
+                  border-radius: 20px;
+                  background-color: c.$clr-main-gray;
+                  @media (v.$max-small) {
+                    width: 100%;
+                  }
+                  .progress {
+                    height: 100%;
+                    border-radius: inherit;
+                  }
+                }
+                .coast {
+                  color: c.$clr-main-pargraph;
+                }
+              }
+            }
+          }
+          &.red {
+            .progress {
+              background-color: c.$clr-primary-red;
+            }
+          }
+          &.green {
+            .progress {
+              background-color: c.$clr-primary-green;
+            }
+          }
+          &.blue {
+            .progress {
+              background-color: c.$clr-primary-blue;
+              width: 100%;
+            }
+          }
+          &:nth-child(1) {
+            .progress {
+              width: 35%;
+            }
+          }
+          &:nth-child(2) {
+            .progress {
+              width: 65%;
+            }
+          }
+          &:nth-child(4) {
+            .progress {
+              width: 85%;
+            }
+          }
+          &:nth-child(5) {
+            .progress {
+              width: 25%;
+            }
+          }
+          &:nth-child(6) {
+            .progress {
+              width: 50%;
+            }
+          }
+          &:nth-child(7) {
+            .progress {
+              width: 35%;
+            }
+          }
+          &:nth-child(8) {
+            .progress {
+              width: 60%;
+            }
+          }
+          &:nth-child(9) {
+            .progress {
+              width: 90%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

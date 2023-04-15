@@ -1,0 +1,45 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+@use "../helpers/components";
+
+%dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: v.$main-padding;
+  @media (v.$max-medium) {
+    grid-template-columns: 1fr;
+  }
+}
+%profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: v.$main-padding;
+  @media (v.$max-small) {
+    grid-template-columns: 1fr;
+  }
+}
+%courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: v.$main-padding;
+  @media(v.$max-small) {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+%plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: v.$main-padding;
+  @media(v.$max-small) {
+    grid-template-columns: 1fr;
+  }
+
+}
+%files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: v.$main-padding;
+}

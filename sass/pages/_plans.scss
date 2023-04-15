@@ -1,0 +1,157 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+@use "../helpers/components" as *;
+@use "layout/grid" as *;
+.plans {
+  section {
+    .container {
+      .content {
+        @extend %plans-grid;
+        .plan {
+          @extend %cards-main-styles;
+          .plan-heading {
+            position: relative;
+            color: white;
+            padding: v.$main-padding;
+            text-align: center;
+            font-weight: bold;
+            border-radius: inherit;
+            margin-bottom: 1rem;
+            .category {
+              font-size: 2rem;
+              margin-bottom: 0.75rem;
+            }
+            .price {
+              span {
+                font-size: 1.5rem;
+                vertical-align: top;
+                margin-right: 10px;
+              }
+              font-size: 3.5rem;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              border: 2px solid currentColor;
+              width: calc(100% - 8px);
+              height: calc(100% - 8px);
+              top: 2px;
+              left: 2px;
+              border-radius: inherit;
+            }
+          }
+          ul {
+            margin-bottom: 1.5rem;
+            li {
+              @include m.flex(space-between, center) {
+                gap:.5rem;
+              }
+              padding: v.$card-padding 0 v.$card-padding 2rem;
+              border-bottom: 1px solid #DDDDDD;
+              position: relative;
+              @media(max-width: 400px) {
+                font-size: 14px;
+              }
+              i {
+                &:first-of-type {
+                  position: absolute;
+                  left: 0;
+                }
+                &:last-of-type {
+                  cursor: pointer;
+                  color: c.$clr-main-pargraph;
+                  transition: color v.$main-transition;
+                }
+              }
+            }
+          }
+          .join {
+            width: 50%;
+            margin-inline: auto;
+            text-align: center;
+            padding-block: .5rem;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: box-shadow v.$main-transition;
+            position: relative;
+            z-index: 1;
+            &::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              z-index: -1;
+              background-color: hsl(0, 0%, 0%, 0.4);
+              border-radius: inherit;
+              opacity: 0;
+              transition: opacity v.$main-transition;
+            }
+            &:hover {
+              box-shadow: 5px 5px 10px hsl(0, 0%, 0%, 0.2);
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+          &.free {
+            .plan-heading {
+              background-color: c.$clr-primary-green;
+            }
+            ul {
+              li {
+                i {
+                  &:last-of-type:hover {
+                    color: c.$clr-primary-green;
+                  }
+                }
+              }
+            }
+            .join {
+              background-color: c.$clr-primary-green;
+            }
+          }
+          &.basic {
+            .plan-heading {
+              background-color: c.$clr-primary-blue;
+            }
+            ul {
+              li {
+                i {
+                  &:last-of-type:hover {
+                    color: c.$clr-primary-blue;
+                  }
+                }
+              }
+            }
+            .join {
+              background-color: c.$clr-primary-blue;
+            }
+          }
+          &.prem {
+            .plan-heading {
+              background-color: c.$clr-primary-red;
+            }
+            ul {
+              li {
+                i {
+                  &:last-of-type:hover {
+                    color: c.$clr-primary-red;
+                  }
+                }
+              }
+            }
+            .join {
+              background-color: c.$clr-primary-red;
+            }
+          }
+        }
+      }
+    }
+  }
+}

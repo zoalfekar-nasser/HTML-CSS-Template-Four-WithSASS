@@ -1,0 +1,72 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+@use "../helpers/components" as *;
+@use "layout/grid" as *;
+.courses {
+  section {
+    .container {
+      .content {
+        @extend %courses-grid;
+        .card {
+          position: relative;
+          background-color: c.$clr-main-card;
+          box-shadow: v.$box-shadow;
+          border-radius: v.$card-radius;
+          @include m.shTr (5px, 5px, 10px, rgba(c.$clr-main-heading,.1));
+          @include m.flex() {
+            flex-direction: column;
+          };
+          .image {
+            border-radius: inherit;
+            img {
+              border-radius: inherit;
+              margin-inline: auto;
+            }
+          }
+          .text {
+            padding: 1.5rem 1rem 2.5rem;
+            h3 {
+              font-size: 18px;
+              margin-bottom: 1rem;
+            }
+            .dr {
+              color: c.$clr-main-pargraph;
+              line-height: 1.6;
+              font-size: 15px;
+            }
+          }
+          .info {
+            position: relative;
+            align-self: stretch;
+            padding: v.$card-padding ;
+            @include m.flex(space-between,center);
+            border-top: 2px solid #ECF2FF;
+            .button {
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translate(-50%,-50%);
+              z-index: 20;
+            }
+            .price {
+              color: c.$clr-primary-green;
+            }
+            .users {
+              color: c.$clr-primary-yellow;
+            }
+          }
+          > img {
+            width: 60px;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            box-shadow: 2px 2px 10px hsl(0, 0%, 0%,.5);
+          }
+        }
+      }
+    }
+  }
+}

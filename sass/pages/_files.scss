@@ -1,0 +1,161 @@
+@use "../helpers/variables" as v;
+@use "../helpers/colors" as c;
+@use "../helpers/mixins" as m;
+@use "../helpers/components" as *;
+@use "layout/grid" as *;
+.files {
+  section {
+    .container {
+      .content {
+        @include m.flex(flex-start, flex-start) {
+          gap: v.$main-padding;
+        }
+        @media (v.$max-small) {
+          flex-direction: column-reverse;
+          align-items: stretch;
+        }
+        .files-container {
+          flex: 1;
+          @extend %files-grid;
+          .file {
+            padding: 0.75rem;
+            background-color: c.$clr-main-card;
+            box-shadow: v.$box-shadow;
+            border-radius: v.$card-radius;
+            position: relative;
+            @include m.shTr(2px, 2px, 10px, hsl(0, 0%, 0%, 0.3));
+            &:hover {
+              .heading {
+                img {
+                  transform: rotate(-10deg);
+                }
+              }
+            }
+            .heading {
+              text-align: center;
+              img {
+                width: 75px;
+                margin: 1.5rem auto;
+                transition: transform v.$main-transition;
+              }
+              .title {
+                font-weight: bold;
+              }
+            }
+            .publisher {
+              padding-block: v.$card-padding;
+              font-size: 14px;
+              color: c.$clr-main-pargraph;
+              border-bottom: 1px solid #dddddd;
+              margin-bottom: v.$card-padding;
+            }
+            .info {
+              @include m.flex(space-between, center);
+              color: c.$clr-main-pargraph;
+            }
+            > i {
+              color: c.$clr-main-pargraph;
+              position: absolute;
+              left: 10px;
+              top: 10px;
+            }
+          }
+        }
+        .stat {
+          @extend %cards-main-styles;
+          flex-basis: min(300px, 100%);
+          @media (v.$max-small) {
+            flex-basis: 100%;
+          }
+          section {
+            .row {
+              @include m.flex(space-between, center);
+              border-radius: v.$card-radius;
+              border: 1px solid #dddddd;
+              padding: 0.75rem;
+              margin-bottom: v.$card-padding;
+              .section-1 {
+                @include m.flex(flex-start, center) {
+                  gap: 0.5rem;
+                }
+                .icon {
+                  @include m.flex(center, center);
+                  width: 45px;
+                  font-size: 1.5rem;
+                  aspect-ratio: 1;
+                  border-radius: 5px;
+                }
+                .text {
+                  font-size: 15px;
+                  span {
+                    display: block;
+                    margin-top: 0.5rem;
+                    color: c.$clr-main-pargraph;
+                  }
+                }
+              }
+              .section-2 {
+                color: c.$clr-main-pargraph;
+                font-weight: bold;
+              }
+              &:nth-child(1) {
+                .section-1 {
+                  .icon {
+                    background-color: rgba(c.$clr-primary-blue, 0.1);
+                    color: c.$clr-primary-blue;
+                  }
+                }
+              }
+              &:nth-child(2) {
+                .section-1 {
+                  .icon {
+                    background-color: rgba(c.$clr-primary-green, 0.1);
+                    color: c.$clr-primary-green;
+                  }
+                }
+              }
+              &:nth-child(3) {
+                .section-1 {
+                  .icon {
+                    background-color: rgba(c.$clr-primary-red, 0.1);
+                    color: c.$clr-primary-red;
+                  }
+                }
+              }
+              &:nth-child(4) {
+                .section-1 {
+                  .icon {
+                    background-color: rgba(c.$clr-primary-yellow, 0.1);
+                    color: c.$clr-primary-yellow;
+                  }
+                }
+              }
+            }
+          }
+          .upload {
+            cursor: pointer;
+            transition: transform v.$main-transition,
+              box-shadow v.$main-transition;
+            width: min(150px, 75%);
+            padding-block: 0.75rem;
+            margin-inline: auto;
+            background-color: c.$clr-primary-blue;
+            text-align: center;
+            color: white;
+            border-radius: 50px;
+            &:hover {
+              box-shadow: 5px 5px 10px rgba(c.$clr-primary-blue, 0.5);
+              transform: translateY(-5px);
+              i {
+                animation: up 1s infinite linear alternate;
+              }
+            }
+            > i {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
